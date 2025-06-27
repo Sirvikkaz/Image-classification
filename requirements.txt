@@ -1,7 +1,7 @@
 numpy>=1.26.4
 matplotlib>=3.8.2
 uvicorn==0.23.2
-tensorflow>=2.18.0,<2.19.0
+tensorflow-cpu>=2.18.0,<2.19.0
 opencv-python>=4.9.0
 fastapi>=0.115.12
 streamlit>=1.45.1

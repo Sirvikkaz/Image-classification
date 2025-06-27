@@ -1,7 +1,10 @@
 import streamlit as st
 import requests
+import os 
+API_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:9090")
+
 with st.spinner("Loading model, it might take a while..."):
-    response = requests.get("http://127.0.0.1:9090/")
+    response = requests.get(f"{API_URL}/")
     st.success(response.json()["message"])
 
 st.title("🖼️ CIFAR-10 Image Classifier")
@@ -14,7 +17,7 @@ uploaded_image = st.file_uploader("Choose an image", type=["jpg", "png", "jpeg"]
 
 if st.button("Get prediction"):
     if uploaded_image is not None:
-        url = "http://127.0.0.1:9090/predict"
+        url = f"{API_URL}/predict"
         files = {"image":(uploaded_image.name, uploaded_image.read(), uploaded_image.type)}
         with st.spinner("Analyzing image...."):
             response = requests.post(url, files=files)
